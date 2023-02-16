@@ -1,18 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-    value: []
-}
-
-// in here i believe i will need a way to update this state to the student data so that it will be accessible to different components throughout the app via the redux store
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+export const getStudentsAsync = createAsyncThunk("allStudentsList", async () => {
+    try {
+        const { data } = await axios.get('http://localhost:3000/students');
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+});
 
 const studentsSlice = createSlice({
     name: 'students',
-    initialState,
-    reducers: {
-
-    }
+    initialState: [],
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(getStudentsAsync.fulfilled, (state, action) => {
+            return action.payload;
+        });
+    },
 })
 
-export const SelectAllStudents = (state) => state.students
+export const selectAllStudents = (state) => state.students
 export default studentsSlice.reducer

@@ -1,38 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import Sequelize from "sequelize/types/sequelize";
-// import { Campuses } from "../../server/db/models";
-export const fetchCampuses = createAsyncThunk('/api/campuses', async () => {
-    const { data } = await axios.get('http://localhost:3000/api/campuses');
-    console.log(data, 'data from async thunk')
-    return data;
-    // return fetch('/campuses')
-    // .then(res => res ? console.log(res.data) : null);
-});
 
-// fetchSchools = async() => {
-//     return await axios.get('http://localhost:3000/api/campuses').then(res => res.data)
-// }
+// export const fetchCampusesAsync = createAsyncThunk('allCampusesList', async () => {
+//     try {
+//         const { data } = await axios.get('http://localhost:3000/campuses');
+//         console.log(data)
+//         return data;
+//     } catch (e) {
+//         console.log(e);
+//     }
+// });
 
-// i set initial state equal to the data in the database so that when it changes my use effect runs and renders the updated information 
+// const campusUrl = 'http://localhost:3000/campuses';
+
+export const getCampusesThunk = createAsyncThunk('campuses/getCampuses', async () => {
+    try {
+        const response = await axios.get('http://localhost:3000/campuses');
+        console.log('response.data: ', response.data);
+        return response.data
+    } catch(e) {
+        console.log(e.message);
+    }
+})
+
 const campusesSlice = createSlice({
     name: 'campuses',
-    initialState: {
-        value: []
+    initialState: [],
+    reducers: {},
+    extraReducers: (builder) => { // builder is an object that lets you define extra reducers outside of the slice but that act on the slice
+        (builder) => {
+            // cases listening for promise status action type that are dispatched from from thunk, then we set our state accordingly
+
+            // think of this similarly to a switch statement
+            builder
+            .addCase(getCampuses.fulfilled, (state, action) => {
+                // update state by using immer library
+                // state.campuses.value.setAll(state, action.payload);
+                // state.status = 'succeded';
+                return action.payload
+            })
+        }
     },
-    reducers: {
-        // do i need to add a reducer that pushes new campuses to the state here?
-        // setState: (state, action) => {
-        //     state = fetchCampuses();
-        // }
-    },
-    // extraReducers: async (builder) => {
-    //     builder.addCase(fetchCampuses.fulfilled, (state, action) => {
-    //         state.push(action.payload); /// is this how you set the state?
-    //     })
-    // }
 });
 
-export const selectAllCampuses = (state) => state.campuses;
+export const getCampusesState = (state) => state.campuses
+
 export default campusesSlice.reducer;
-// export const { setState } = campusesSlice.actions

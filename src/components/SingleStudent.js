@@ -1,26 +1,32 @@
-import axios from 'axios';
+// import axios from 'axios';
+// import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react'
+// import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleStudent, singleStudentState } from '../slices/singleStudentSlice';
 
 const SingleStudent = () => {
-    // const [studentId, setStudentId] = useState(0);
-    const [student, setStudent] = useState([]);
-    const params = useParams()
-
-    const getAndSetData = async () => {
-        const data = await axios.get(`http://localhost:3000/api/students/${params}`).then(res => setStudent(res.data));
-        // const student = await axios.get(`/api/${params}`).then(res => res.data);
+    const [singleStudent, setSingleStudent] = useState([]);
+    const params = useParams();
+    console.log('stringified params:   ', JSON.stringify(params));
+    const getCampus = async () => {
+        return await axios.get(`http://localhost:3000/students/${params.studentId}`)
+        .then(res => setSingleStudent(res.data))
     }
-
     useEffect(() => {
-        // setStudentId(params);
-        getAndSetData();
+        getCampus();
     }, [])
-    console.log(student)
     return (
         <div>
-            <h1>Student Id:</h1>
-            <h1>Student: {student}</h1>
+            <h1>{a}</h1>
+            <h1>{singleStudent.first + ' ' + singleStudent.last}</h1>
+            <h2>{singleStudent.campusId}</h2>
+            <h2>{singleStudent.email}</h2>
+            <h3>{singleStudent.phone}</h3>
+            <p><strong>{singleStudent.gpa}</strong></p>
+            <img src={singleStudent.imageUrl} />
         </div>
     )
 }

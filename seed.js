@@ -56,19 +56,19 @@ const studentsData = [
 const campusesData = [
     {
         name: 'MIT',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/a/ae/World_Peace_Library%2C_MIT_College%2C_Pune.jpg',
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVJ4PyuCl-maT8JTsOCa3D-1buYoVcn7OVhA&usqp=CAU',
         address: '77 Massachusetts Ave, Cambridge, MA 02139',
         description: 'Massachusetts Institute of Technology (MIT), privately controlled coeducational institution of higher learning famous for its scientific and technological training and research.'
     },
     {
         name: 'Princeton',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/220px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Princeton_seal.svg',
         address: 'Princeton, NJ 08544',
         description: 'Princeton University is a private Ivy League research university in Princeton, New Jersey. Founded in 1746 in Elizabeth as the College of New Jersey.'
     },
     {
         name: 'UIC',
-        imageUrl: 'https://today.uic.edu/wp-content/uploads/2020/08/EIB-Entrance-with-Sign.jpeg',
+        imageUrl: 'https://www.seekpng.com/png/detail/267-2678612_uic-logo-university-illinois-chicago-uic-logo.png',
         address: '1200 W Harrison St, Chicago, IL 60607',
         description: 'The University of Illinois Chicago is a public research university in Chicago, Illinois.'
     }

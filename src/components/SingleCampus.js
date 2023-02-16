@@ -3,19 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 // import Campuses from './Campuses';
 
-const SingleCampus = () => {
+const SingleCampus = (props) => {
     const [singleCampus, setSingleCampus] = useState([]);
-    // const params = useParams(); // use params is not working
-    // const getCampus = async () => {
-    //     await axios.get(`http://localhost:3000/api/campuses/${params.id}`).then(res => setSingleCampus(res.data))
-    // }
-
+    const params = useParams();
+    // console.log('stringified params:   ', JSON.stringify(params));
+    const getCampus = async () => {
+        await axios.get(`http://localhost:3000/campuses/${params.campusId}`).then(res => setSingleCampus(res.data))
+    }
     useEffect(() => {
-        fetch(`http://localHost:3000/api/campuses/${params.id}`)
-        .then(res => setSingleCampus(res.data));
+        getCampus();
     }, []);
     return (
-        <div>{singleCampus.name}</div>
+        <div>
+            <h1>{singleCampus.name}</h1>
+            <h2>{singleCampus.address}</h2>
+            <p><strong>{singleCampus.description}</strong></p>
+            <img src={singleCampus.imageUrl} />
+        </div>
     )
 }
 
