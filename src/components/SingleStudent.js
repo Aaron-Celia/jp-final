@@ -1,27 +1,32 @@
-// import axios from 'axios';
-// import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleStudent, singleStudentState } from '../slices/singleStudentSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 const SingleStudent = () => {
     const [singleStudent, setSingleStudent] = useState([]);
+    const [campuses, setCampuses] = useState([])
     const params = useParams();
-    console.log('stringified params:   ', JSON.stringify(params));
-    const getCampus = async () => {
+    const getStudent = async () => {
         return await axios.get(`http://localhost:3000/students/${params.studentId}`)
-        .then(res => setSingleStudent(res.data))
+            .then(res => setSingleStudent(res.data))
+    }
+    const getCampuses = async () => {
+        await axios.get('http://localhost:3000/campuses')
+            .then(res => setCampuses(res.data))
     }
     useEffect(() => {
-        getCampus();
+        getStudent();
+        getCampuses();
     }, [])
     return (
         <div>
-            <h1>{a}</h1>
             <h1>{singleStudent.first + ' ' + singleStudent.last}</h1>
+            {campuses.map(campus => {
+                if (campus.id === singleStudent.id) {
+                    return <h2 key={nanoid()}>Attends: {campus.name}</h2>
+                }
+            })}
             <h2>{singleStudent.campusId}</h2>
             <h2>{singleStudent.email}</h2>
             <h3>{singleStudent.phone}</h3>

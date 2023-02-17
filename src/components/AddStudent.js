@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { addStudent } from '../slices/addStudentSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { updateStore } from '../slices/studentsSlice';
 
 const AddStudent = () => {
     const [firstName, setFirstName] = useState('')
@@ -27,13 +28,24 @@ const AddStudent = () => {
             lastName: lastName,
             email: email
         }));
-        // make axios post request
         await axios.post('http://localhost:3000/students', {
-                first: firstName,
-                last: lastName,
-                email: email
+            first: firstName,
+            last: lastName,
+            email: email
         })
+        dispatch(updateStore({
+            first: firstName,
+            last: lastName,
+            email: null,
+            imageUrl: null,
+            gps: null,
+            campusId: null
+        }))
     }
+    const allStudents = useSelector(state => state.students);
+    useEffect(() => {
+    }, [allStudents])
+
     return (
         <div>
             <form onSubmit={addStudentUponSubmit}>

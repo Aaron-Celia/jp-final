@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCampus } from '../slices/addCampusSlice';
 import { useEffect } from 'react';
+import { updateCampusesStore } from '../slices/campusesSlice';
 
 const AddCampus = () => {
     const [name, setName] = useState('')
@@ -16,26 +17,26 @@ const AddCampus = () => {
         const address = event.target.value;
         setAddress(address);
     }
-    const resetInputFields = () => {
-        setName('');
-        setAddress('');
-    }
     const addCampusUponSubmit = async (event) => {
         event.preventDefault();
         dispatch(addCampus({
             name: name,
             address: address
         }));
-        // make axios post request
         await axios.post('http://localhost:3000/campuses', {
-                name,
-                address
+            name,
+            address
         })
+        dispatch(updateCampusesStore({
+            name: name,
+            imageUrl: null,
+            address: address,
+            description: null
+        }))
     }
-
+    const allCampuses = useSelector(state => state.campuses)
     useEffect(() => {
-        resetInputFields();
-    }, [])
+    }, [allCampuses]);
 
     return (
         <div>

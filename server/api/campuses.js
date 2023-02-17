@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Campuses, Students } = require('../db/models');
+const { Campuses } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
     try {
@@ -13,12 +13,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:campusId', async (req, res, next) => {
     try {
-        // const campus = await Campuses.findByPk(req.params.campusId, {
-        //     include: Students
-        // });
         const campus = await Campuses.findByPk(req.params.campusId)
         res.send(campus);
-        // res.send('heyyyyyyyyyyyyyyyy')
     } catch (e) {
         next(e);
     }
@@ -37,19 +33,12 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.delete('/', async (req, res, next) => {
+router.delete('/:campusId', async (req, res, next) => {
     try {
-        // const { name } = req.body;
-        // await Campuses.destroy(Campuses.findOne({
-        //     where: {
-        //         name: req.body.name
-        //     }
-        // }))
-        await Campuses.destroy({
-            where: {
-                id: req.body.id
-            }
-        })
+        const campus = await Campuses.findByPk(req.params.campusId)
+        await campus.destroy();
+        const newList = await Campuses.findAll();
+        res.send(newList);
     } catch (e) {
         next(e)
     }

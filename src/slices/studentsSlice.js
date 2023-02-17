@@ -12,7 +12,11 @@ export const getStudentsAsync = createAsyncThunk("allStudentsList", async () => 
 const studentsSlice = createSlice({
     name: 'students',
     initialState: [],
-    reducers: {},
+    reducers: {
+        updateStore: (state, action) => {
+            state.push(action.payload)
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getStudentsAsync.fulfilled, (state, action) => {
             return action.payload;
@@ -22,3 +26,4 @@ const studentsSlice = createSlice({
 
 export const selectAllStudents = (state) => state.students
 export default studentsSlice.reducer
+export const { updateStore } = studentsSlice.actions

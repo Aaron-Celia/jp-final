@@ -22,19 +22,10 @@ const syncAndSeed = async () => {
                 email: stud.email,
                 imageUrl: stud.imageUrl,
                 gpa: stud.gpa,
-                // define campus id by referencing Campuses id
                 campusId: stud.campusId
 
             })
         })
-        // campusesData.map(camp => {
-        //     Campuses.create({
-        //         name: camp.name,
-        //         imageUrl: camp.imageUrl,
-        //         address: camp.address,
-        //         description: camp.description
-        //     })
-        // });
         console.log('seeded')
     } catch (e) {
         console.log('ERROR =>', e);

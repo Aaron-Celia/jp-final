@@ -1,12 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-// import Campuses from './Campuses';
 
 const SingleCampus = (props) => {
     const [singleCampus, setSingleCampus] = useState([]);
     const params = useParams();
-    // console.log('stringified params:   ', JSON.stringify(params));
     const getCampus = async () => {
         await axios.get(`http://localhost:3000/campuses/${params.campusId}`).then(res => setSingleCampus(res.data))
     }

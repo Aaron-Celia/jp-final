@@ -1,5 +1,3 @@
-// const db = require('./server/db/database');
-
 const studentsData = [
     {
         first: 'Clavin',
