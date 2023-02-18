@@ -18,29 +18,32 @@ const Campuses = () => {
         data();
     }, [newCampuses, responseData])
     return (
-        <div id='container'>
-            <h1 className='CampusesTitle'>All Campuses</h1>
+        <div className='container'>
+            <div>
+                <h1>All Campuses</h1>
+            </div>
             <div id='addCampusForm'>
                 <h3>Add Campus:</h3>
                 <AddCampus />
             </div>
-            {campuses.length ? campuses.map(campus => {
-                return (
-                    <div key={nanoid()} className='campusDiv'>
-                        <button onClick={async () => {
-                            await axios.delete(`http://localhost:3000/campuses/${campus.id}`)
-                                .then(res => setCampuses(res.data))
+            {
+                campuses.length ? campuses.map(campus => {
+                    return (
+                        <div key={nanoid()} className='container'>
+                            <button onClick={async () => {
+                                await axios.delete(`http://localhost:3000/campuses/${campus.id}`)
+                                    .then(res => setCampuses(res.data))
 
-                        }}>X</button>
-                        <h1>{<Link to={`/campuses/${campus.id}`}>{campus.name}</Link>}</h1>
-                        <img src={campus.imageUrl} />
-                        <h3>Address: {campus.address}</h3>
-                        <p>About: {campus.description}</p>
-                    </div>
+                            }}>X</button>
+                            <h1>{<Link to={`/campuses/${campus.id}`}>{campus.name}</Link>}</h1>
+                            <img src={campus.imageUrl} />
+                            <h3>Address: {campus.address}</h3>
+                            <p>About: {campus.description}</p>
+                        </div>
+                    )
+                }
                 )
-            }
-            )
-                : <h2>Sorry, no campuses to display right now...</h2>
+                    : <h2>Sorry, no campuses to display right now...</h2>
             }
         </div>
     )

@@ -11,19 +11,21 @@ import Students from './Students';
 
 const Main = () => {
     return (
-        <div id='box'>
+        <div>
             <nav id='navBar'>
                 <Link className='homeLink' to='/'>Home</Link>
                 <Link className='campusesLink' to='/campuses'>Campuses</Link>
                 <Link className='studentsLink' to='/students'>Students</Link>
             </nav>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/campuses' element={<Campuses />} />
-                <Route path='/students' element={<Students />} />
-                <Route path='/students/:studentId' element={<SingleStudent />} />
-                <Route path='/campuses/:campusId' element={<SingleCampus />} />
-            </Routes>
+            <div className='box'>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/campuses' element={<Campuses />} />
+                    <Route path='/students' element={<Students />} />
+                    <Route path='/students/:studentId' element={<SingleStudent />} />
+                    <Route path='/campuses/:campusId' element={<SingleCampus />} />
+                </Routes>
+            </div>
         </div>
     );
 };

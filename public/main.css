@@ -1,8 +1,20 @@
 body {
     margin: 0px;
-    background-color: #d1cdc0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-image: url(http://www.thebelfortgroup.com/wp-content/uploads/2022/07/shutterstock_396462283-scaled.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 60px;
+    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Medium 500 Italic' sans-serif;
+}
+
+.box > .container > div {
+    background-color: ivory;
+    margin: 10px;
 }
 
 #navBar {
@@ -12,7 +24,10 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 25px;
+    margin-top: 0px;
+    margin-right: 25vw;
+    position: fixed;
+    top: 0px;
 }
 
 .homeLink {
@@ -33,12 +48,12 @@ body {
     font-size: 24px;
 }
 
-#root > div div{
+#root > div div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30vw;
+    width: 55vw;
     margin: 8px;
 }
 
@@ -46,6 +61,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 100px;
 }
 
 #root form {
@@ -54,6 +70,7 @@ body {
     justify-content: center;
     align-items: center;
     border: solid black 2px;
+    background-color: #bfa865;
 }
 
 #root form button {
@@ -67,11 +84,6 @@ body {
 #root form input {
     margin-left: 20px;
     margin-right: 20px;
-}
-
-#root h1 {
-    font-family: 'Roboto Slab', sans-serif;
-    font-family: 'Medium 500 Italic' sans-serif;
 }
 
 #root img {

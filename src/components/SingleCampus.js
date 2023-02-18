@@ -13,7 +13,7 @@ const SingleCampus = (props) => {
     }
     const getStudents = async () => {
         await axios.get('http://localhost:3000/students')
-        .then(res => setAllStudents(res.data))
+            .then(res => setAllStudents(res.data))
     }
     useEffect(() => {
         getCampus();
@@ -21,19 +21,21 @@ const SingleCampus = (props) => {
     }, []);
     console.log(allStudents)
     return (
-        <div id='container'>
-            <h1>{singleCampus.name}</h1>
-            <h2>{singleCampus.address}</h2>
-            <p><strong>{singleCampus.description}</strong></p>
-            <img src={singleCampus.imageUrl} />
-            <h2>Students attending:</h2>
-            {allStudents.length ? allStudents.map(stud => {
-                if(stud.id === singleCampus.id){
-                    return <h3 key={nanoid()}>{stud.first + ' ' + stud.last}</h3>
+        <div className='container'>
+            <div>
+                <h1>{singleCampus.name}</h1>
+                <h2>{singleCampus.address}</h2>
+                <p><strong>{singleCampus.description}</strong></p>
+                <img src={singleCampus.imageUrl} />
+                <h2>Students attending:</h2>
+                {allStudents.length ? allStudents.map(stud => {
+                    if (stud.id === singleCampus.id) {
+                        return <h3 key={nanoid()}>{stud.first + ' ' + stud.last}</h3>
+                    }
+                })
+                    : <h3>No students are enrolled here...</h3>
                 }
-            })
-        : <h3>No students are enrolled here...</h3>
-        }
+            </div>
         </div>
     )
 }

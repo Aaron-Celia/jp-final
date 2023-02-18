@@ -14,20 +14,17 @@ const Students = () => {
     const allStudents = useSelector(state => state.students);
     const getCampuses = async () => {
         await axios.get('http://localhost:3000/campuses')
-        .then(res => setCampuses(res.data));
+            .then(res => setCampuses(res.data));
     }
     useEffect(() => {
         dispatch(getStudentsAsync());
         getCampuses();
-    }, [
-        // dispatch,
-         newStudents, 
-         students
-        ]);
-    // console.log(campuses);
+    }, [newStudents, students]);
     return (
-        <div>
-            <h1>All Students</h1>
+        <div className='container'>
+            <div>
+                <h1>All Students</h1>
+            </div>
             <div className='addStudentFormDiv'>
                 <h3>Add Student:</h3>
                 <AddStudent />
@@ -45,11 +42,11 @@ const Students = () => {
                         <p>Gpa: {stud.gpa}</p>
                         <h2>Campus: <Link to={`/campuses/${stud.campusId}`}>{
                             console.log('campuses.length: ', campuses.length)}{
-                        campuses.length ? campuses.map(campus => {
-                            stud.campusId === campus.id ? <h2>{campus.name}</h2> : null
-                        })
-                    : null
-            }</Link></h2>
+                                campuses.length ? campuses.map(campus => {
+                                    stud.campusId === campus.id ? <h2>{campus.name}</h2> : null
+                                })
+                                    : null
+                            }</Link></h2>
                     </div>
                 )
 
