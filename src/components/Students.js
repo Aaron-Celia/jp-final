@@ -51,7 +51,7 @@ const Students = () => {
                 )
 
             })
-                : <h2>Sorry, no students to display right now...</h2>
+                : <div><h2>Sorry, no students to display right now...</h2></div>
             }
         </div>
     )

@@ -43,7 +43,7 @@ const Campuses = () => {
                     )
                 }
                 )
-                    : <h2>Sorry, no campuses to display right now...</h2>
+                    : <div><h2>Sorry, no campuses to display right now...</h2></div>
             }
         </div>
     )
