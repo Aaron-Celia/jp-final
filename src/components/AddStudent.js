@@ -47,7 +47,7 @@ const AddStudent = () => {
     }, [allStudents])
 
     return (
-        <div>
+        <div id='container'>
             <form onSubmit={addStudentUponSubmit}>
                 <label htmlFor='firstName'>First</label>
                 <input

@@ -39,7 +39,7 @@ const AddCampus = () => {
     }, [allCampuses]);
 
     return (
-        <div>
+        <div id='container'>
             <form onSubmit={addCampusUponSubmit}>
                 <label htmlFor='name'>Name</label>
                 <input

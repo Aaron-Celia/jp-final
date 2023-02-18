@@ -20,14 +20,13 @@ const SingleStudent = () => {
         getCampuses();
     }, [])
     return (
-        <div>
+        <div id='container'>
             <h1>{singleStudent.first + ' ' + singleStudent.last}</h1>
             {campuses.map(campus => {
                 if (campus.id === singleStudent.id) {
                     return <h2 key={nanoid()}>Attends: {campus.name}</h2>
                 }
             })}
-            <h2>{singleStudent.campusId}</h2>
             <h2>{singleStudent.email}</h2>
             <h3>{singleStudent.phone}</h3>
             <p><strong>{singleStudent.gpa}</strong></p>

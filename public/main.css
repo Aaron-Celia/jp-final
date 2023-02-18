@@ -1,0 +1,79 @@
+body {
+    margin: 0px;
+    background-color: #d1cdc0;
+    display: flex;
+    justify-content: center;
+}
+
+#navBar {
+    background-color: darkgreen;
+    width: 55vw;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.homeLink {
+    text-decoration: none;
+    color: white;
+    font-size: 24px; 
+}
+
+.studentsLink {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+
+.campusesLink {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+
+#root > div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    margin: 8px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#root form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+}
+
+#root form button {
+    margin: 10px;
+}
+
+#root form label {
+    margin-top: 10px;
+}
+
+#root form input {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#root h1 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Medium 500 Italic' sans-serif;
+}
+
+#root img {
+    width: 25vw;
+}

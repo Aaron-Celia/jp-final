@@ -18,9 +18,9 @@ const Campuses = () => {
         data();
     }, [newCampuses, responseData])
     return (
-        <div>
-            <h1>All Campuses</h1>
-            <div className='addCampusFormDiv'>
+        <div id='container'>
+            <h1 className='CampusesTitle'>All Campuses</h1>
+            <div id='addCampusForm'>
                 <h3>Add Campus:</h3>
                 <AddCampus />
             </div>
