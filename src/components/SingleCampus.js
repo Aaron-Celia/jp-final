@@ -3,10 +3,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-const SingleCampus = (props) => {
+const SingleCampus = () => {
     const [singleCampus, setSingleCampus] = useState([]);
     const [allStudents, setAllStudents] = useState([]);
-    const [filteredStudents, setFilteredStudents] = useState([]);
+    // const [filteredStudents, setFilteredStudents] = useState([]);
     const params = useParams();
     const getCampus = async () => {
         await axios.get(`http://localhost:3000/campuses/${params.campusId}`).then(res => setSingleCampus(res.data))
@@ -19,7 +19,6 @@ const SingleCampus = (props) => {
         getCampus();
         getStudents();
     }, []);
-    console.log(allStudents)
     return (
         <div className='container'>
             <div>

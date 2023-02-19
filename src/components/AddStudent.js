@@ -8,6 +8,7 @@ const AddStudent = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [isValidEmail, setIsValidEmail] = useState('notValid');
     const dispatch = useDispatch();
     const updateFirstName = (event) => {
         const firstName = event.target.value;
@@ -20,6 +21,12 @@ const AddStudent = () => {
     const updateEmail = (event) => {
         const email = event.target.value;
         setEmail(email);
+        email.includes('@' && '.com')
+        || email.includes('@' && '.org')
+        || email.includes('@' && '.gov')
+        || email.includes('@' && '.net')
+        ? setIsValidEmail('valid')
+        : setIsValidEmail('notValid')
     }
     const addStudentUponSubmit = async (event) => {
         event.preventDefault();
@@ -28,19 +35,19 @@ const AddStudent = () => {
             lastName: lastName,
             email: email
         }));
-        await axios.post('http://localhost:3000/students', {
-            first: firstName,
-            last: lastName,
-            email: email
-        })
-        dispatch(updateStore({
-            first: firstName,
-            last: lastName,
-            email: null,
-            imageUrl: null,
-            gps: null,
-            campusId: null
-        }))
+        // await axios.post('http://localhost:3000/students', {
+        //     first: firstName,
+        //     last: lastName,
+        //     email: email
+        // })
+        // dispatch(updateStore({
+        //     first: firstName,
+        //     last: lastName,
+        //     email: null,
+        //     imageUrl: null,
+        //     gpa: null,
+        //     campusId: null
+        // }))
     }
     const allStudents = useSelector(state => state.students);
     useEffect(() => {
@@ -48,7 +55,23 @@ const AddStudent = () => {
 
     return (
         <div>
-            <form onSubmit={addStudentUponSubmit}>
+            <form onSubmit={async (e) => {
+                e.preventDefault()
+                addStudentUponSubmit();
+                dispatch(updateStore({
+                    first: firstName,
+                    last: lastName,
+                    email: email,
+                    imageUrl: 'https://d2jyir0m79gs60.cloudfront.net/news/images/successful-college-student-lg.png',
+                    gpa: null,
+                    campusId: null
+                }))
+                await axios.post('http://localhost:3000/students', {
+                    first: firstName,
+                    last: lastName,
+                    email: email
+                })
+                }}>
                 <label htmlFor='firstName'>First</label>
                 <input
                     id='firstName'
@@ -65,15 +88,16 @@ const AddStudent = () => {
                     onChange={updateLastName}
                     type='text'
                 />
-                <label htmlFor='email'>Email</label>
+                <label className={isValidEmail} htmlFor='email'>Email</label>
                 <input
+                    className={isValidEmail}
                     id='email'
                     value={email}
                     placeholder='Email...'
                     onChange={updateEmail}
                     type='text'
                 />
-                <button type='submit' >Submit</button>
+                <button type='submit'>Submit</button>
             </form>
         </div>
     )

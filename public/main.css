@@ -12,6 +12,14 @@ body {
     font-family: 'Medium 500 Italic' sans-serif;
 }
 
+.valid {
+    color: darkgreen;
+}
+
+.notValid {
+    color: red;
+}
+
 .box > .container > div {
     background-color: ivory;
     margin: 10px;

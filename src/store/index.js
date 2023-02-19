@@ -11,7 +11,6 @@ import addedStudents from '../slices/addStudentSlice';
 
 const store = configureStore({
   reducer: {
-    // these are how you access the state of the slices throughout the app, i need to find a way to update the slice state in the slice files................................
     campuses: campusesSlice,
     students: studentsSlice,
     singleStudent: singleStudentSlice,
