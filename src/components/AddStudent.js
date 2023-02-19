@@ -28,8 +28,8 @@ const AddStudent = () => {
         ? setIsValidEmail('valid')
         : setIsValidEmail('notValid')
     }
-    const addStudentUponSubmit = async (event) => {
-        event.preventDefault();
+    const addStudentUponSubmit = async () => {
+        // event.preventDefault();
         dispatch(addStudent({
             firstName: firstName,
             lastName: lastName,

@@ -22,16 +22,16 @@ const SingleStudent = () => {
     return (
         <div className='container'>
             <div>
-                <h1>{singleStudent.first + ' ' + singleStudent.last}</h1>
-                {campuses.map(campus => {
-                    if (campus.id === singleStudent.id) {
-                        return <h2 key={nanoid()}>Attends: {campus.name}</h2>
-                    }
-                })}
-                <h2>{singleStudent.email}</h2>
-                <h3>{singleStudent.phone}</h3>
-                <p><strong>{singleStudent.gpa}</strong></p>
-                <img src={singleStudent.imageUrl} />
+            <h1>{singleStudent.first + ' ' + singleStudent.last}</h1>
+            {campuses.map(campus => {
+                if (campus.id === singleStudent.id) {
+                    return <h2 key={nanoid()}>Attends: {campus.name}</h2>
+                }
+            })}
+            <h2>{singleStudent.email}</h2>
+            <h3>{singleStudent.phone}</h3>
+            <p><strong>{singleStudent.gpa}</strong></p>
+            <img src={singleStudent.imageUrl} />
             </div>
         </div>
     )
