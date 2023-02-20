@@ -22,11 +22,11 @@ const AddStudent = () => {
         const email = event.target.value;
         setEmail(email);
         email.includes('@' && '.com')
-        || email.includes('@' && '.org')
-        || email.includes('@' && '.gov')
-        || email.includes('@' && '.net')
-        ? setIsValidEmail('valid')
-        : setIsValidEmail('notValid')
+            || email.includes('@' && '.org')
+            || email.includes('@' && '.gov')
+            || email.includes('@' && '.net')
+            ? setIsValidEmail('valid')
+            : setIsValidEmail('notValid')
     }
     const addStudentUponSubmit = async () => {
         dispatch(addStudent({
@@ -57,7 +57,8 @@ const AddStudent = () => {
                     last: lastName,
                     email: email
                 })
-                }}>
+
+            }}>
                 <label htmlFor='firstName'>First</label>
                 <input
                     id='firstName'

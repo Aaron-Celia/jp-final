@@ -1,10 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import { getSingleCampusAsync, getSingleCampusState } from '../slices/singleCampusSlice';
-// import { getStudentsState } from '../slices/studentsSlice';
 import axios from 'axios';
 
 const SingleCampus = () => {
@@ -16,9 +12,6 @@ const SingleCampus = () => {
     const [description, setDescription] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const { campusId } = useParams();
-    // const dispatch = useDispatch();
-    // const singleCampus = useSelector(getSingleCampusState);
-    // const allStudents = useSelector(getStudentsState);
     const getCampus = async () => {
         await axios.get(`http://localhost:3000/campuses/${campusId}`).then(res => setSingleCampus(res.data))
     }
@@ -41,7 +34,6 @@ const SingleCampus = () => {
             updateCampus();
             setSubmitted(false);
         }
-        // dispatch(getSingleCampusAsync(campusId));
     }, [submitted]);
     return (
         <div className='container'>

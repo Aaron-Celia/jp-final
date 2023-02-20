@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { nanoid } from '@reduxjs/toolkit';
-import { getCampusesAsync, getCampusesState } from '../slices/campusesSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const SingleStudent = () => {
     const [singleStudent, setSingleStudent] = useState([]);
@@ -37,11 +36,11 @@ const SingleStudent = () => {
     useEffect(() => {
         getCampuses();
         getStudent();
-        if (submitted){
+        if (submitted) {
             updateStudent();
             setSubmitted(false);
         }
-    }, [submitted])
+    }, [submitted]);
     return (
         <div className='container'>
             <div>

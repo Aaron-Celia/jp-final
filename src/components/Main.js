@@ -1,7 +1,4 @@
 import React from 'react';
-/* 
-    This is you entry point for your routes
-*/
 import { Route, Routes, Link } from 'react-router-dom';
 import Campuses from './Campuses';
 import Home from './Home';

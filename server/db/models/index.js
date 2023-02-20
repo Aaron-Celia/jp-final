@@ -1,6 +1,5 @@
 const db = require('../database');
 const Sequelize = require('sequelize');
-const id = require('volleyball/lib/id');
 
 const Campuses = db.define('campus', {
     name: {
@@ -73,8 +72,7 @@ const Students = db.define('student', {
         references: {
             model: Campuses,
             key: 'id'
-        },
-        // allowNull: false
+        }
     }
 });
 
@@ -82,30 +80,9 @@ const Students = db.define('student', {
 
 Campuses.hasMany(Students, { 
     foreignKey: Campuses.id,
-    constraints: false // to avoid the possible error of not this not knowing which table to make first when the db is synced
+    constraints: false
 });
 Students.belongsTo(Campuses);
-
-// Campuses.hasMany(
-//     Students, 
-//     {
-//         as: 'school',
-//         foreignKey: 'campusId',
-//         onDelete: 'CASCADE',
-//         onUpdatate: 'CASCADE'
-//     }
-// )
-
-// Students.belongsTo(
-//     Campuses, 
-//     {
-//         as: 'students',
-//         foreignKey: 'campusId',
-//         constraints: false,
-//         onDelete: 'CASCADE',
-//         onUpdate: 'CASCADE'
-//     }
-// ); 
 
 module.exports = {
     Students,

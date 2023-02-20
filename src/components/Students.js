@@ -9,14 +9,13 @@ import { getCampusesAsync, getCampusesState } from '../slices/campusesSlice';
 
 
 const Students = () => {
-    
+
     const dispatch = useDispatch();
     const getInfo = () => {
         dispatch(getCampusesAsync())
         dispatch(getStudentsAsync());
     }
     useEffect(() => {
-        console.log('infinite')
         getInfo()
     }, [newStudents, campuses]);
     const allStudents = useSelector(getStudentsState);
@@ -24,33 +23,31 @@ const Students = () => {
     const campuses = useSelector(getCampusesState);
     return (
         <div key={nanoid()} className='container'>
-            {/* <div> */}
-                <h1 key={nanoid()}>All Students</h1>
-                <AddStudent />
-                {allStudents.length ? allStudents.map(student => {
-                    return (
-                        <div key={nanoid()}>
-                            <button onClick={async () => {
-                                await axios.delete(`http://localhost:3000/students/${student.id}`)
+            <h1 key={nanoid()}>All Students</h1>
+            <AddStudent />
+            {allStudents.length ? allStudents.map(student => {
+                return (
+                    <div key={nanoid()}>
+                        <button onClick={async () => {
+                            await axios.delete(`http://localhost:3000/students/${student.id}`)
                                 .then(res => dispatch(getStudentsAsync()))
-                            }}>X</button>
-                            <h1 key={nanoid()}><Link to={`/students/${student.id}`}>{student.first + ' ' + student.last}</Link></h1>
-                            {campuses.length ? campuses.map(campus => {
-                                if(campus.id === student.id){
-                                    return <h2 key={nanoid()}>Attends: <Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h2>
-                                }
-                            })
-                        : <h2 key={nanoid()}>Not currently enrolled</h2>
+                        }}>X</button>
+                        <h1 key={nanoid()}><Link to={`/students/${student.id}`}>{student.first + ' ' + student.last}</Link></h1>
+                        {campuses.length ? campuses.map(campus => {
+                            if (campus.id === student.id) {
+                                return <h2 key={nanoid()}>Attends: <Link to={`/campuses/${campus.id}`}>{campus.name}</Link></h2>
+                            }
+                        })
+                            : <h2 key={nanoid()}>Not currently enrolled</h2>
                         }
-                        <img key={nanoid()} src={student.imageUrl}/>
+                        <img key={nanoid()} src={student.imageUrl} />
                         <h3 key={nanoid()}>{student.email}</h3>
                         <h5 key={nanoid()}>{student.gpa}</h5>
-                        </div>
-                    )
-                })
-            : <h2 key={nanoid()}>Sorry, no students to display right now...</h2>
+                    </div>
+                )
+            })
+                : <div><h2 key={nanoid()}>Sorry, no students to display right now...</h2></div>
             }
-            {/* </div> */}
         </div>
     )
 }
