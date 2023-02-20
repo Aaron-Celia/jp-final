@@ -97,3 +97,15 @@ body {
 #root img {
     width: 25vw;
 }
+
+.hidden {
+    display: none
+}
+
+.visible {
+    display: block;
+}
+
+.smallFont {
+    font-size: x-small;
+}

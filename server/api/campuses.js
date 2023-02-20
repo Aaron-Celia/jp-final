@@ -44,4 +44,25 @@ router.delete('/:campusId', async (req, res, next) => {
     }
 })
 
+router.put('/:campusId', async (req, res, next) => {
+    try {
+        const { name, imageUrl, address, description } = req.body;
+        const campus = await Campuses.findOne({
+            where: { id: req.params.campusId }
+        });
+        if (campus) {
+            campus.name = name;
+            campus.imageUrl = imageUrl;
+            campus.address = address;
+            campus.description = description;
+            await campus.save();
+            res.send(campus);
+        } else {
+            res.status(404).send('Student not found!');
+        }
+    } catch (e) {
+        next(e);
+    }
+})
+
 module.exports = router

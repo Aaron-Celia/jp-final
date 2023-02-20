@@ -1,24 +1,48 @@
 import { nanoid } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+// import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+// import { getSingleCampusAsync, getSingleCampusState } from '../slices/singleCampusSlice';
+// import { getStudentsState } from '../slices/studentsSlice';
+import axios from 'axios';
 
 const SingleCampus = () => {
     const [singleCampus, setSingleCampus] = useState([]);
     const [allStudents, setAllStudents] = useState([]);
-    // const [filteredStudents, setFilteredStudents] = useState([]);
-    const params = useParams();
+    const [name, setName] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [address, setAddress] = useState('');
+    const [description, setDescription] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const { campusId } = useParams();
+    // const dispatch = useDispatch();
+    // const singleCampus = useSelector(getSingleCampusState);
+    // const allStudents = useSelector(getStudentsState);
     const getCampus = async () => {
-        await axios.get(`http://localhost:3000/campuses/${params.campusId}`).then(res => setSingleCampus(res.data))
+        await axios.get(`http://localhost:3000/campuses/${campusId}`).then(res => setSingleCampus(res.data))
     }
     const getStudents = async () => {
         await axios.get('http://localhost:3000/students')
             .then(res => setAllStudents(res.data))
     }
+    const updateCampus = async () => {
+        await axios.put(`http://localhost:3000/campuses/${campusId}`, {
+            name,
+            imageUrl,
+            address,
+            description
+        })
+    }
     useEffect(() => {
         getCampus();
         getStudents();
-    }, []);
+        if (submitted) {
+            updateCampus();
+            setSubmitted(false);
+        }
+        // dispatch(getSingleCampusAsync(campusId));
+    }, [submitted]);
     return (
         <div className='container'>
             <div>
@@ -34,6 +58,42 @@ const SingleCampus = () => {
                 })
                     : <h3>No students are enrolled here...</h3>
                 }
+            </div>
+            <div>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    setSubmitted(true)
+                }}>
+                    <label htmlFor='name'>Name</label>
+                    <input
+                        id='name'
+                        value={name}
+                        type='text'
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <label htmlFor='imageUrl'>ImageUrl</label>
+                    <input
+                        id='imageUrl'
+                        value={imageUrl}
+                        type='text'
+                        onChange={(e) => setImageUrl(e.target.value)}
+                    />
+                    <label htmlFor='address'>Address</label>
+                    <input
+                        id='address'
+                        value={address}
+                        type='text'
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                    <label htmlFor='description'>Description</label>
+                    <input
+                        id='description'
+                        value={description}
+                        type='text'
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <button>Done</button>
+                </form>
             </div>
         </div>
     )

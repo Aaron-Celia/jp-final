@@ -29,25 +29,11 @@ const AddStudent = () => {
         : setIsValidEmail('notValid')
     }
     const addStudentUponSubmit = async () => {
-        // event.preventDefault();
         dispatch(addStudent({
             firstName: firstName,
             lastName: lastName,
             email: email
         }));
-        // await axios.post('http://localhost:3000/students', {
-        //     first: firstName,
-        //     last: lastName,
-        //     email: email
-        // })
-        // dispatch(updateStore({
-        //     first: firstName,
-        //     last: lastName,
-        //     email: null,
-        //     imageUrl: null,
-        //     gpa: null,
-        //     campusId: null
-        // }))
     }
     const allStudents = useSelector(state => state.students);
     useEffect(() => {
