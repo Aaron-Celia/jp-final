@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getStudentsAsync = createAsyncThunk("getAllStudents", async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/students');
+      const { data } = await axios.get('/students');
       return data;
     } catch (err) {
       console.log(err);

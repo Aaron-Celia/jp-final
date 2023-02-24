@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const getCampusesAsync = createAsyncThunk("getAllCampuses", async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/campuses');
+      const { data } = await axios.get('/campuses');
       return data;
     } catch (err) {
       console.log(err);

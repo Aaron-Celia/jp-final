@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getSingleCampusAsync = createAsyncThunk("getAllStudents", async (campusId) => {
     try {
-        const { data } = await axios.get(`http://localhost:3000/campuses/${campusId}`);
+        const { data } = await axios.get(`/campuses/${campusId}`);
         return data;
     } catch (err) {
         console.log(err);
