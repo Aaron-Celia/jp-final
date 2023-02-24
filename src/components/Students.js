@@ -29,7 +29,7 @@ const Students = () => {
                 return (
                     <div key={nanoid()}>
                         <button onClick={async () => {
-                            await axios.delete(`http://localhost:3000/students/${student.id}`)
+                            await axios.delete(`/students/${student.id}`)
                                 .then(res => dispatch(getStudentsAsync()))
                         }}>X</button>
                         <h1 key={nanoid()}><Link to={`/students/${student.id}`}>{student.first + ' ' + student.last}</Link></h1>

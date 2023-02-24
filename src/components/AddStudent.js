@@ -52,7 +52,7 @@ const AddStudent = () => {
                     gpa: null,
                     campusId: null
                 }))
-                await axios.post('http://localhost:3000/students', {
+                await axios.post('/students', {
                     first: firstName,
                     last: lastName,
                     email: email

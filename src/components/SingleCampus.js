@@ -13,14 +13,14 @@ const SingleCampus = () => {
     const [submitted, setSubmitted] = useState(false);
     const { campusId } = useParams();
     const getCampus = async () => {
-        await axios.get(`http://localhost:3000/campuses/${campusId}`).then(res => setSingleCampus(res.data))
+        await axios.get(`/campuses/${campusId}`).then(res => setSingleCampus(res.data))
     }
     const getStudents = async () => {
-        await axios.get('http://localhost:3000/students')
+        await axios.get('/students')
             .then(res => setAllStudents(res.data))
     }
     const updateCampus = async () => {
-        await axios.put(`http://localhost:3000/campuses/${campusId}`, {
+        await axios.put(`/campuses/${campusId}`, {
             name,
             imageUrl,
             address,
@@ -52,6 +52,7 @@ const SingleCampus = () => {
                 }
             </div>
             <div>
+                <h3>Update Campus Info</h3>
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     setSubmitted(true)

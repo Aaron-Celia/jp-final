@@ -10,9 +10,9 @@ const Campuses = () => {
     const [responseData, setResponseData] = useState([]);
     const newCampuses = useSelector(state => state.newCampuses)
     const campusData = async () => {
-        await axios.get('http://localhost:3000/campuses')
+        await axios.get('/campuses')
             .then(res => setResponseData(res.status))
-        return await axios.get('http://localhost:3000/campuses').then(res => setCampuses(res.data));
+        return await axios.get('/campuses').then(res => setCampuses(res.data));
     }
     useEffect(() => {
         campusData();
@@ -31,7 +31,7 @@ const Campuses = () => {
                     return (
                         <div key={nanoid()} className='container'>
                             <button onClick={async () => {
-                                await axios.delete(`http://localhost:3000/campuses/${campus.id}`)
+                                await axios.delete(`/campuses/${campus.id}`)
                                     .then(res => setCampuses(res.data))
 
                             }}>X</button>

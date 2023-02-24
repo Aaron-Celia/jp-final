@@ -23,7 +23,7 @@ const AddCampus = () => {
             name: name,
             address: address
         }));
-        await axios.post('http://localhost:3000/campuses', {
+        await axios.post('/campuses', {
             name,
             address
         })

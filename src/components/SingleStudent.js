@@ -16,15 +16,15 @@ const SingleStudent = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const getStudent = async () => {
-        return await axios.get(`http://localhost:3000/students/${params.studentId}`)
+        return await axios.get(`/students/${params.studentId}`)
             .then(res => setSingleStudent(res.data))
     }
     const getCampuses = async () => {
-        await axios.get('http://localhost:3000/campuses')
+        await axios.get('/campuses')
             .then(res => setCampuses(res.data))
     }
     const updateStudent = async () => {
-        await axios.put(`http://localhost:3000/students/${params.studentId}`, {
+        await axios.put(`/students/${params.studentId}`, {
             first: first,
             last: last,
             email: email,
@@ -56,6 +56,7 @@ const SingleStudent = () => {
                 <img src={singleStudent.imageUrl} />
             </div>
             <div>
+                <h3>Update Student Info</h3>
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     setSubmitted(true);
